@@ -265,6 +265,12 @@ require('lazy').setup({
     },
   },
 
+  -- Vim Fugtive is for interacting with Git throguh neovim's command line
+  {
+    'tpope/vim-fugitive',
+  },
+
+  -- VimTex is a plugin for making Neovim an aweseom LaTeX editor
   {
     'lervag/vimtex',
     lazy = false, -- we don't want to lazy load VimTex
