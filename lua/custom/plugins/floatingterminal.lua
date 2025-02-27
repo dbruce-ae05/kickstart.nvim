@@ -1,5 +1,7 @@
 vim.keymap.set('t', '<esc><esc>', '<c-\\><c-n>')
 
+vim.keymap.set('n', '<leader>t', '<cmd>Floaterminal<CR>', { desc = 'Toggle floating terminal' })
+
 local state = {
   floating = {
     buf = -1,
