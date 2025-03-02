@@ -203,6 +203,17 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Always open help in a vertical split
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  group = vim.api.nvim_create_augroup('help_window_right', {}),
+  pattern = { '*.txt' },
+  callback = function()
+    if vim.o.filetype == 'help' then
+      vim.cmd.wincmd 'L'
+    end
+  end,
+})
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -265,9 +276,40 @@ require('lazy').setup({
     },
   },
 
-  -- Vim Fugtive is for interacting with Git throguh neovim's command line
+  -- -- Vim Fugtive is for interacting with Git throguh neovim's command line
+  -- {
+  --   'tpope/vim-fugitive',
+  -- },
+
   {
-    'tpope/vim-fugitive',
+    'NeogitOrg/neogit',
+    dependencies = {
+      'nvim-lua/plenary.nvim', -- required
+      'sindrets/diffview.nvim', -- optional - Diff integration
+
+      -- Only one of these is needed
+      'nvim-telescope/telescope.nvim',
+    },
+    config = true,
+  },
+
+  { 'mbbill/undotree' },
+
+  -- lazy.nvim
+  {
+    'folke/noice.nvim',
+    event = 'VeryLazy',
+    opts = {
+      -- add any options here
+    },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      'MunifTanjim/nui.nvim',
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      'rcarriga/nvim-notify',
+    },
   },
 
   -- VimTex is a plugin for making Neovim an aweseom LaTeX editor
