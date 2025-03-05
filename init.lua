@@ -320,6 +320,8 @@ require('lazy').setup({
     init = function()
       -- VimTex configuration goes here, e.g.
       vim.g.vimtex_view_method = 'skim'
+      vim.g.vimtex_complete_enabled = 1
+      vim.g.vimtex_complete_close_braces = 1
     end,
   },
 
@@ -725,6 +727,7 @@ require('lazy').setup({
         -- clangd = {},
         -- gopls = {},
         pyright = {},
+        texlab = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -1016,7 +1019,7 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'python' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'python', 'LaTeX' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
